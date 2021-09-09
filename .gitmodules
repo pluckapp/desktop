@@ -1,0 +1,3 @@
+[submodule "packages/macos_ui"]
+	path = packages/macos_ui
+	url = https://github.com/wess/macos_ui.git

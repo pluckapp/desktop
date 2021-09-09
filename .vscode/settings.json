@@ -1,0 +1,9 @@
+{
+  "psi-header.variables": [
+    ["projectname", "pluck"],
+    ["author", "Wess Cope"],
+    ["authoremail", "me@wess.io"],
+    ["company", "Wess.io"]
+  ]
+}
+
