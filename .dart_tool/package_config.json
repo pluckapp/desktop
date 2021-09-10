@@ -182,6 +182,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_local_notifications",
+      "rootUri": "file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-8.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_local_notifications_platform_interface",
+      "rootUri": "file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications_platform_interface-4.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///Users/wess/Development/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -452,6 +464,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "timezone",
+      "rootUri": "file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/timezone-0.8.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "tray_manager",
       "rootUri": "file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/tray_manager-0.0.1",
       "packageUri": "lib/",
@@ -506,7 +524,7 @@
       "languageVersion": "2.13"
     }
   ],
-  "generated": "2021-09-09T15:28:12.654977Z",
+  "generated": "2021-09-10T21:07:55.917270Z",
   "generator": "pub",
   "generatorVersion": "2.14.0"
 }

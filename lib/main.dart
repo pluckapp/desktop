@@ -13,25 +13,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:pluck/foundation/data.dart';
-import 'package:pluck/providers/hotkey.dart';
+import 'package:pluck/foundation/hotkeys.dart';
+import 'package:pluck/foundation/notification.dart';
+import 'package:pluck/providers/link/provider.dart';
 import 'package:pluck/providers/navigation/provider.dart';
-import 'package:pluck/providers/request.dart';
 import 'package:pluck/providers/session/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:tray_manager/tray_manager.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Data.init();
+  await NotificationService.initialize();
+  await NotificationService.requestPermission();
 
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => RequestProvider()),
-        ChangeNotifierProvider(create: (context) => SessionProvider()),
-        ChangeNotifierProvider(create: (context) => HotKeyProvider(context)),
         ChangeNotifierProvider(create: (context) => NavProvider(context)),
+        ChangeNotifierProvider(create: (context) => SessionProvider()),
+        ChangeNotifierProvider(create: (context) => LinkProvider()),
       ],
       child: MediaQuery(
         data: MediaQueryData(),
@@ -57,11 +60,15 @@ class _MainState extends State<Main> with TrayListener {
 
   @override
   void initState() { 
+    _setupHotkeys();
     _setupTray();
-
-    context.read<HotKeyProvider>().register();
-
+    
     super.initState();  
+  }
+
+  Future<void> _setupHotkeys() async {
+    await Hotkeys.unregister();
+    await Hotkeys.register(context);
   }
 
   void _setupTray() {

@@ -3,6 +3,8 @@ PODS:
     - FlutterMacOS
   - device_info_plus_macos (0.0.1):
     - FlutterMacOS
+  - flutter_local_notifications (0.0.1):
+    - FlutterMacOS
   - flutter_web_auth (0.3.1):
     - FlutterMacOS
   - FlutterMacOS (1.0.0)
@@ -24,6 +26,7 @@ PODS:
 DEPENDENCIES:
   - bitsdojo_window_macos (from `Flutter/ephemeral/.symlinks/plugins/bitsdojo_window_macos/macos`)
   - device_info_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/device_info_plus_macos/macos`)
+  - flutter_local_notifications (from `Flutter/ephemeral/.symlinks/plugins/flutter_local_notifications/macos`)
   - flutter_web_auth (from `Flutter/ephemeral/.symlinks/plugins/flutter_web_auth/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - hotkey_manager (from `Flutter/ephemeral/.symlinks/plugins/hotkey_manager/macos`)
@@ -42,6 +45,8 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/bitsdojo_window_macos/macos
   device_info_plus_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/device_info_plus_macos/macos
+  flutter_local_notifications:
+    :path: Flutter/ephemeral/.symlinks/plugins/flutter_local_notifications/macos
   flutter_web_auth:
     :path: Flutter/ephemeral/.symlinks/plugins/flutter_web_auth/macos
   FlutterMacOS:
@@ -62,6 +67,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   bitsdojo_window_macos: 7e9b1bbb09bdce418d9657ead7fc9d824203ff0d
   device_info_plus_macos: 1ad388a1ef433505c4038e7dd9605aadd1e2e9c7
+  flutter_local_notifications: 3805ca215b2fb7f397d78b66db91f6a747af52e4
   flutter_web_auth: 1d40e4d0058da11c04a279ca27632bd448865f57
   FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
   HotKey: ad59450195936c10992438c4210f673de5aee43e

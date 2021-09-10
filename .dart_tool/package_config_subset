@@ -118,6 +118,14 @@ fluro
 2.12
 file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/fluro-2.0.3/
 file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/fluro-2.0.3/lib/
+flutter_local_notifications
+2.12
+file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-8.2.0/
+file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications-8.2.0/lib/
+flutter_local_notifications_platform_interface
+2.12
+file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications_platform_interface-4.0.1/
+file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/flutter_local_notifications_platform_interface-4.0.1/lib/
 flutter_web_auth
 2.12
 file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/flutter_web_auth-0.3.1/
@@ -274,6 +282,10 @@ test_api
 2.12
 file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/test_api-0.4.2/
 file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/test_api-0.4.2/lib/
+timezone
+2.12
+file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/timezone-0.8.0/
+file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/timezone-0.8.0/lib/
 tray_manager
 2.12
 file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/tray_manager-0.0.1/

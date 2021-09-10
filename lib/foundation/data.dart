@@ -16,6 +16,7 @@ import 'package:pluck/foundation/api.dart';
 
 class Data {
   static String session = '_session';
+  static String links = '_links';
 
   static Future<void> init({List<String> boxes = const []}) async {
     final dir = await getApplicationSupportDirectory();
@@ -24,6 +25,7 @@ class Data {
 
     await Future.wait([
       session,
+      links,
       ...boxes
     ].map(Hive.openBox));
   }
@@ -75,5 +77,5 @@ class Collection {
 }
 
 class Database {
-  static Collection get links => Collection('613a285362dfb');
+  static Collection get links => Collection('613b631dbced4');
 }
