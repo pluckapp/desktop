@@ -8,6 +8,8 @@
 // Copywrite (c) 2021 Wess.io
 //
 
+import 'package:pluck/extensions/num.dart';
+
 class Link {
   final String id;
   final String userId;
@@ -15,6 +17,7 @@ class Link {
   final String url;
   final String type;
   final String? tag;
+  final DateTime timestamp;
 
   Map<String, dynamic> get json => {
     'id': this.id,
@@ -22,7 +25,8 @@ class Link {
     'code': this.code,
     'url': this.url,
     'type': this.type,
-    'tag': this.tag
+    'tag': this.tag,
+    'timestamp': this.timestamp.unixTimestamp
   };
 
   Link({
@@ -31,17 +35,25 @@ class Link {
     required this.code,
     required this.url,
     required this.type,
-    this.tag
-  });
+    this.tag,
+    DateTime? timestamp
+  }) : this.timestamp = timestamp ?? DateTime.now();
 
   static Link fromJson(Map<String, dynamic> data) {
+    final DateTime utcTimestamp = data.keys.contains('timestamp')
+    ? ((data['timestamp'] as int) > 0) 
+      ? (data['timestamp'] as int).unixTimestamp
+      : DateTime.now()
+    : DateTime.now();
+
     return Link(
       id: data['\$id'],
       userId: data['userid'],
       code: data['code'],
       url: data['url'],
       type: data['type'],
-      tag: data['tag']
+      tag: data['tag'],
+      timestamp: utcTimestamp
     );
   }
 }

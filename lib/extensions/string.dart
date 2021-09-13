@@ -20,4 +20,9 @@ extension StringExt on String {
 
   Future<bool> get isDirectory async => (await FileSystemEntity.type(this)) == FileSystemEntityType.directory;
   Future<bool> get isFile async => (await FileSystemEntity.type(this)) == FileSystemEntityType.file; 
+
+  bool isValidEmail() {
+    return RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+      .hasMatch(this);
+  }
 }

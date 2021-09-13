@@ -11,6 +11,7 @@
 import "package:fluro/fluro.dart";
 import 'package:flutter/material.dart';
 import 'package:pluck/components/app/component.dart';
+import 'package:pluck/components/settings/component.dart';
 
 typedef RouteParams = Map<String, dynamic>;
 
@@ -22,4 +23,5 @@ class NavHandler {
   });
 
   static Handler root = Handler(handlerFunc: (BuildContext? context, Map<String, dynamic> params) => AppComponent());
+  static Handler settings = Handler(handlerFunc: (BuildContext? context, Map<String, dynamic> params) => SettingsComponent());
 }

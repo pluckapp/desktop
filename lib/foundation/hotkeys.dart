@@ -106,16 +106,10 @@ class Hotkeys {
         type: type
       );
 
-      final shortcut = Api.shortUrl(link);
+      copyShortcut(Api.shortUrl(link));
 
-      Clipboard.setData(
-        ClipboardData(text: shortcut)
-      );
+      await context.read<LinkProvider>().load();
 
-      NotificationService.show(
-        title: 'Pluck post successful', 
-        body: 'URL ($shortcut) has been copied to your clipboard'
-      );
 
     } on AppwriteException catch(err) {
       print("Paste Appwrite err: ${err.message}");
@@ -123,5 +117,16 @@ class Hotkeys {
     } on FileSystemException catch (err) {
       print("FileSystem err: ${err.message}");
     }
+  }
+
+  static void copyShortcut(String url) {
+    Clipboard.setData(
+      ClipboardData(text: url)
+    );
+
+    NotificationService.show(
+      title: '$url', 
+      body: 'Has been copied clipboard'
+    );
   }
 }

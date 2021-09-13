@@ -18,6 +18,7 @@ import 'package:pluck/foundation/notification.dart';
 import 'package:pluck/providers/link/provider.dart';
 import 'package:pluck/providers/navigation/provider.dart';
 import 'package:pluck/providers/session/provider.dart';
+import 'package:pluck/providers/user/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:tray_manager/tray_manager.dart';
 
@@ -32,7 +33,8 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => NavProvider(context)),
+        ChangeNotifierProvider(create: (context) => NavProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => SessionProvider()),
         ChangeNotifierProvider(create: (context) => LinkProvider()),
       ],

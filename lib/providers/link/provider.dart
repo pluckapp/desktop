@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:pluck/foundation/data.dart';
 import 'package:pluck/providers/link/model.dart';
 import 'package:pluck/foundation/shortcode.dart';
+import 'package:pluck/extensions/num.dart';
 
 enum LinkType {
   Text,
@@ -20,21 +21,27 @@ enum LinkType {
 }
 
 class LinkProvider extends ChangeNotifier {
+  bool _loading = false;
+  bool get loading => _loading;
+
   List<Link> _list = [];
   List<Link> get list => _list;
-  
 
   LinkProvider() {
     load();
   }
 
   Future<List<Link>> load() async {
+    _loading = true;
+    notifyListeners();
+    
     final response = await Database.links.list();
     final data = response.data;
     final list = data['documents'].map((d) => Link.fromJson(d)).toList();
-
+    
     _list = List<Link>.from(list);
     
+    _loading = false;
     notifyListeners();
     return _list;
   }
@@ -46,11 +53,10 @@ class LinkProvider extends ChangeNotifier {
     String? tag,
   }) async {
 
-    print("Saving...");
+    _loading = true;
+    notifyListeners();
 
     final code = _generateCode();
-
-    print("code: $code");
 
     final response = await Database.links.create(
       {
@@ -58,21 +64,15 @@ class LinkProvider extends ChangeNotifier {
         'code': code,
         'url': url,
         'type': _typeKey(type),
-        'tag': tag ?? userId
+        'tag': tag ?? userId,
+        'timestamp': DateTime.now().unixTimestamp
       }, 
       userId
     );
 
-    print("RES: $response");
-
     final link = Link.fromJson(response.data);
-
-    print("link: $link");
-
-    print("loading...");
     await load();
 
-    print("returning link");
     return link;
   }
 

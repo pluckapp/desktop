@@ -46,6 +46,23 @@ class SessionProvider extends ChangeNotifier {
 
   }
 
+  Future<Session?> create({required String email, required String password}) async {
+    final response = await Api.account.create(email: email, password: password);
+    final data = Map<String, dynamic>.from(response.data);
+
+    _session = Session.fromJson(data);
+    saveSession();
+  }
+
+  Future<void> delete() async {
+    if(_session == null) { return; }
+
+    await Api.account.deleteSession(sessionId: _session!.id);
+    await _box.delete('current');
+
+    notifyListeners();
+  }
+
   Future<Session?>getSession() async  {
     try {
       final result = await Api.account.getSession(sessionId: 'current');

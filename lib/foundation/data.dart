@@ -49,8 +49,46 @@ class Collection {
     );
   }
 
+  Future<void>purge() async {
+    final data = Map<String, dynamic>.from((await list()).data);
+    final docs = List<Map<String, dynamic>>.from(data.keys.contains('documents') ? data['documents'] : []);
+    final ids = 
+      docs
+      .where((element) => element.keys.contains('\$id'))
+      .map((e) => e['\$id'])
+      .toList();
+
+    final stored = (await Api.storage.listFiles()).data;
+    final files = List<Map<String, dynamic>>.from(stored.keys.contains('files') ? stored['files'] : []);
+    final fids =
+      files
+      .where((element) => element.keys.contains('\$id'))
+      .map((e) => e['\$id'])
+      .toList();
+    
+    Future.wait(
+      [...(
+        ids
+        .map((e) => Api.database.deleteDocument(
+          collectionId: _id,
+          documentId: e
+        ))
+        .toList()
+      ),
+      ...(
+        fids
+        .map((e) => Api.storage.deleteFile(fileId: e))
+        .toList()
+      )]
+    );
+  }
+
   Future<Response<dynamic>> list() async {
-    return await Api.database.listDocuments(collectionId: _id);
+    return await Api.database.listDocuments(
+      collectionId: _id,
+      orderField: 'timestamp',
+      orderType: 'DESC',
+    );
   }
 
   Future<Response<dynamic>> get(String id) async {

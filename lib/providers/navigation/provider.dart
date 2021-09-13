@@ -14,16 +14,15 @@ import 'package:flutter/widgets.dart';
 import './handlers.dart';
 
 class NavProvider extends ChangeNotifier {
-  final BuildContext _context;
-
   FluroRouter _router = FluroRouter();
   FluroRouter get router => _router;
 
   Map<String, Handler> _handlers = {
     '/' : NavHandler.root,
+    '/settings' : NavHandler.settings,
   };
 
-  NavProvider(BuildContext context): this._context = context {
+  NavProvider() {
     _configureRoutes();
   }
 
@@ -31,5 +30,13 @@ class NavProvider extends ChangeNotifier {
     router.notFoundHandler = NavHandler.notFound;
 
     _handlers.forEach((key, value) => router.define(key, handler: value));
+  }
+
+  void push(BuildContext context, String to) {
+    _router.navigateTo(context, to);
+  }
+
+  void pop(BuildContext context) {
+    _router.pop(context);
   }
 }

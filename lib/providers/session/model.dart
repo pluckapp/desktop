@@ -9,6 +9,7 @@
 //
 
 import 'package:pluck/extensions/num.dart';
+import 'package:pluck/providers/user/model.dart';
 
 class Session {
   final String id;
@@ -17,6 +18,8 @@ class Session {
   final String provider;
   final String providerUid;
   final String providerToken;
+  
+  User? user;
 
   Map<String, dynamic> get json => {
     'id' : this.id,

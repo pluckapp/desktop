@@ -494,6 +494,42 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "url_launcher",
+      "rootUri": "file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.0.10",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_linux",
+      "rootUri": "file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_macos",
+      "rootUri": "file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_platform_interface",
+      "rootUri": "file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/url_launcher_platform_interface-2.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_web",
+      "rootUri": "file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-2.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_windows",
+      "rootUri": "file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "uuid",
       "rootUri": "file:///Users/wess/.pub-cache/hosted/pub.dartlang.org/uuid-3.0.4",
       "packageUri": "lib/",
@@ -524,7 +560,7 @@
       "languageVersion": "2.13"
     }
   ],
-  "generated": "2021-09-10T21:07:55.917270Z",
+  "generated": "2021-09-13T15:34:25.128729Z",
   "generator": "pub",
   "generatorVersion": "2.14.0"
 }
