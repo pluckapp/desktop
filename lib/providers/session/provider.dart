@@ -10,9 +10,11 @@
 
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:pluck/foundation/api.dart';
 import 'package:pluck/foundation/data.dart';
+import 'package:pluck/providers/user/model.dart';
 import 'model.dart';
 
 class SessionProvider extends ChangeNotifier {
@@ -63,26 +65,51 @@ class SessionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<Session?>getSession() async  {
+  Future<Session>getSession() async  {
     try {
       final result = await Api.account.getSession(sessionId: 'current');
       final data = Map<String, dynamic>.from(result.data);
 
-      _session = Session.fromJson(data);
+      var session = Session.fromJson(data);
 
+      final user = await getAccount();
+
+      session = session.update(user: user);
+
+      _session = session;
+      
       saveSession();
 
-      return _session;
-    } on AppwriteException catch(e) {
+      return _session!;
+    } on AppwriteException catch(_) {
       await createAnonymous();
+
+      return _session!;
     }
   }
 
-  void saveSession() {
-    if(_session == null) { return; }
+  void saveSession({Session? session}) {
+    Session? saving = session ?? _session;
 
-    _box.put('current', _session!.json);
+    if(saving == null) { return; }
+
+    _box.put('current', saving.json);
 
     notifyListeners();
+  }
+
+  Future<User?> getAccount() async {
+    try {
+      final result = await Api.account.get();
+      final data = Map<String,dynamic>.from(result.data);
+
+      return User.fromJson(data);
+    } on AppwriteException catch(_) {
+      return null;
+    } catch(e) {
+      print("getAccount error: $e");
+
+      return null;
+    }
   }
 }

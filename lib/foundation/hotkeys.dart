@@ -103,7 +103,8 @@ class Hotkeys {
       Link link = await context.read<LinkProvider>().save(
         userId: session.userId, 
         url: address, 
-        type: type
+        type: type,
+        tag: session.user?.username
       );
 
       copyShortcut(Api.shortUrl(link));

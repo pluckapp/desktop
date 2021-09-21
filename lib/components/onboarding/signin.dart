@@ -31,6 +31,16 @@ class UserSignin extends StatelessWidget {
           ),
           SizedBox(height: 6,),
           Divider(color: MacosDynamicColor.resolve(MacosColors.textColor, context).withAlpha(20),),
+          Container(
+            child: Text(
+              'Enter email and password to sign into your account.',
+              style: TextStyle(
+                color: MacosDynamicColor.resolve(MacosColors.textColor, context).withAlpha(160)
+              ),
+            ),
+          ),
+          SizedBox(height: 6,),
+          Divider(color: MacosDynamicColor.resolve(MacosColors.textColor, context).withAlpha(20),),
           SizedBox(height: 6,),
           MacosTextField(
             padding: EdgeInsets.all(12),

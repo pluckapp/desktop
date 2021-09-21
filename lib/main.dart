@@ -34,9 +34,9 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => NavProvider()),
-        ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => SessionProvider()),
         ChangeNotifierProvider(create: (context) => LinkProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider(context)),
       ],
       child: MediaQuery(
         data: MediaQueryData(),

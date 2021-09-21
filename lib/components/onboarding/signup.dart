@@ -11,6 +11,7 @@
 import 'package:flutter/material.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:pluck/components/onboarding/provider.dart';
+import 'package:pluck/providers/user/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:pluck/extensions/string.dart';
 
@@ -25,8 +26,30 @@ class _UserSignupState extends State<UserSignup> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
-  void _validate() {
-    
+  String _error = '';
+
+  bool _validate() {
+    if(
+      _emailController.text.isEmpty &&
+      _usernameController.text.isEmpty &&
+      _passwordController.text.isEmpty 
+    ) { 
+      setState(() {
+        _error = 'Email, username and password are required.';
+      });
+
+      return false; 
+    }
+
+    if(_emailController.text.isValidEmail() == false) { 
+      setState(() {
+        _error = 'Invalid email address';
+      });
+      
+      return false; 
+    }
+
+    return true;
   }
 
   @override
@@ -55,6 +78,21 @@ class _UserSignupState extends State<UserSignup> {
               ),
             ),
           ),
+          if(_error.isEmpty == false)
+          ...[
+            SizedBox(height: 6,),
+            Divider(color: MacosDynamicColor.resolve(MacosColors.textColor, context).withAlpha(20),),
+            SizedBox(height: 6,),
+            Container(
+              padding: EdgeInsets.all(8),
+              color: MacosDynamicColor.resolve(MacosColors.alternatingContentBackgroundColor, context).withAlpha(160),
+              child: Text(
+              _error,
+              style: TextStyle(
+                color: MacosDynamicColor.resolve(MacosColors.systemRedColor, context).withAlpha(160)
+              ),
+            ),
+          )],
           SizedBox(height: 6,),
           Divider(color: MacosDynamicColor.resolve(MacosColors.textColor, context).withAlpha(20),),
           SizedBox(height: 6,),
@@ -98,8 +136,16 @@ class _UserSignupState extends State<UserSignup> {
               PushButton(
                 child: Text("Submit"), 
                 buttonSize: ButtonSize.large,
-                onPressed: () {
-                  context.read<OnboardingProvider>().viewSignin();
+                onPressed: () async {
+                  if(_validate() == false) { return; }
+
+                  final user = await context.read<UserProvider>().register(
+                    email: _emailController.text, 
+                    password: _passwordController.text, 
+                    username: _usernameController.text
+                  );
+
+                  print("New user: $user");
                 },
               ),
             ],

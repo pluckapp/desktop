@@ -21,14 +21,22 @@ class Session {
   
   User? user;
 
-  Map<String, dynamic> get json => {
-    'id' : this.id,
-    'userId' : this.userId,
-    'expire' : this.expire.unixTimestamp,
-    'provider' : this.provider,
-    'providerUid' : this.providerUid,
-    'providerToken' : this.providerToken,
-  };
+  Map<String, dynamic> get json {
+    var data = {
+      'id' : this.id,
+      'userId' : this.userId,
+      'expire' : this.expire.unixTimestamp,
+      'provider' : this.provider,
+      'providerUid' : this.providerUid,
+      'providerToken' : this.providerToken,
+    };
+
+    if(user != null) {
+      data['user'] = user!.json;
+    }
+
+    return data;
+  }
 
   Session({
     required this.id,
@@ -36,8 +44,9 @@ class Session {
     required this.provider,
     required this.providerUid,
     required this.providerToken,
-    required int expire
-  }) : this.expire = expire.unixTimestamp;
+    required int expire,
+    User? user,
+  }) : this.expire = expire.unixTimestamp, this.user = user;
 
   static Session fromJson(Map<String, dynamic> data) {
     return Session(
@@ -48,5 +57,16 @@ class Session {
       providerUid: data['providerUid'],
       providerToken: data['providerToken'],
     );
+  }
+
+  Session update({User? user}) {
+    if(user == null) {
+      return this;
+    }
+
+    var self = this;
+    self.user = user;
+
+    return self;
   }
 }

@@ -48,7 +48,7 @@ class _SettingsComponentState extends State<SettingsComponent> {
                 size: 14,
               ), 
               buttonSize: ButtonSize.small,
-              onPressed: () {},
+              onPressed: () => context.read<NavProvider>().pop(context),
             ),
           ),
           Expanded(child: Container()),
